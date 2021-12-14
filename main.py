@@ -8,16 +8,16 @@ import csv
 
 def converter():
 
-    with open(r'Conversao.csv', "r", encoding='utf8') as inp, open(r'Planilha.txt', "w", encoding='utf8') as out:
+    with open('C:\Conversoes\Conversao.csv', "r", encoding='utf8') as inp, open('C:\Conversoes\Planilha.txt', "w", encoding='utf8') as out:
 
         for file in inp:
             file = file.replace(",", ";")
             out.write(file)
 
-    with open(r'Planilha.txt', "r", encoding='utf8') as f1, open(r'Conversao.csv', "w", encoding='utf8') as f2:
-        f1 = pd.read_csv('Planilha.txt')
-        f1.to_csv(r'Conversao.csv', encoding='utf8', index=None)
-        df = pd.DataFrame(pd.read_csv('Conversao.csv', encoding='utf8'))
+    with open('C:\Conversoes\Planilha.txt', "r", encoding='utf8') as f1, open('C:\Conversoes\Conversao.csv', "w", encoding='utf8') as f2:
+        f1 = pd.read_csv('C:\Conversoes\Planilha.txt')
+        f1.to_csv('C:\Conversoes\Conversao.csv', encoding='utf8', index=None)
+        df = pd.DataFrame(pd.read_csv('C:\Conversoes\Conversao.csv', encoding='utf8'))
 
 
 # capture file
@@ -25,8 +25,8 @@ def browseFiles():
     filename = filedialog.askopenfilename(initialdir= "/", title = "Selecione o arquivo", filetypes=(("XLSX", "*.xlsx*"),("All files", "*.*")))
     label_file_explorer.configure(text="Arquivo aberto: " + filename)
     read_file = pd.read_excel(filename)
-    read_file.to_csv(r'Conversao.csv', index=None)
-    df = pd.DataFrame(pd.read_csv(r'Conversao.csv'))
+    read_file.to_csv('C:\Conversoes\Conversao.csv', index=None)
+    df = pd.DataFrame(pd.read_csv('C:\Conversoes\Conversao.csv'))
 
 def sair():
     exit()
