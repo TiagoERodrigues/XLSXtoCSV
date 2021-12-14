@@ -4,9 +4,19 @@ import os.path
 import pandas as pd
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 import csv
 
+def texto():
+
+    if len(os.listdir('C:\Conversoes')) == 0:
+        messagebox.showinfo("Erro", "Arquivo não detectado")
+    else:
+        messagebox.showinfo("Convertido", "Arquivo convertido com sucesso")
+
 def converter():
+
+    texto()
 
     with open('C:\Conversoes\Conversao.csv', "r", encoding='utf8') as inp, open('C:\Conversoes\Planilha.txt', "w", encoding='utf8') as out:
 
@@ -19,7 +29,7 @@ def converter():
         f1.to_csv('C:\Conversoes\Conversao.csv', encoding='utf8', index=None)
         df = pd.DataFrame(pd.read_csv('C:\Conversoes\Conversao.csv', encoding='utf8'))
 
-
+    texto()
 # capture file
 def browseFiles():
     filename = filedialog.askopenfilename(initialdir= "/", title = "Selecione o arquivo", filetypes=(("XLSX", "*.xlsx*"),("All files", "*.*")))
@@ -49,6 +59,8 @@ if __name__ == '__main__':
     window.config(background="white")
 
     # Create a File Explorer label
+
+
     label_file_explorer = Label(window,
                                 text="Selecione o arquivo",
                                 width=60, height=4,
@@ -63,13 +75,13 @@ if __name__ == '__main__':
                             text="Abrir arquivos",
                             command=browseFiles)
 
-    button_sair = Button(window,
-                            text="Sair",
-                            command=sair)
-
     button_converter = Button(window,
                             text="CSV",
                             command=converter)
+
+    button_sair = Button(window,
+                            text="Sair",
+                            command=sair)
 
     label_file_explorer.grid(column=0, row=1)
     label_file_tigas.grid(column=0, row=10)
